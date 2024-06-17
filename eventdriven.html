@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<!-- Samuel Alberts || University of Advancing Technology -->
+<!-- https://www.youtube.com/watch?v=ZgzPSw95MOQ&t=238s (Tracker by: Samuel Alberts written in 2011 -->
+
+<html lang="en"> <!-- can you speak english?! ;) -->
+<head>
+	<!-- Music and Meme dance is a website fulfilling an assignment. But also the music was originally created with a program someone can download called MadTracker. Tracking is the old school method to developing music from a computer back during the early days of gaming. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music and Meme Dance</title> 
+    <!-- the stylesheet is inherited. This is the CSS script that outlines the appearance of the website. -->
+    <link rel="stylesheet" href="style/style_event.css">
+</head>
+<body>
+<body>
+    <div class="navigation">
+	<nav>
+	    <h2>
+                <ul>
+                    <li><a href='./index.html'>Home</a></li>
+                    <li><a href='./boards.html'>Boards</a></li>
+                    <li><a href='./palindrome.html'>Palindrome</a></li>
+                    <li><a href='./userinput.html'>User Input</a></li>
+		    <li><a href='./eventdriven.html'>Event-Driven Page</a></li>
+		</ul>
+            </h2>
+	</nav>
+    </div>
+
+	<!-- this part of the script creates the visual buttons and appearance where the interactive part of the script is in javascript. But also the feel and appearance of the buttons on the page are arranged in CSS. What is CSS without HTML? -->
+    <div class="app">
+	    <button id="startButton">Start</button> <!-- the start button! -->
+	    <button id="stopButton" disabled>Stop</button> <!-- stop button! -->
+	    <img id="memeImage" src="ai_img.png" alt="meme"> <!-- the Meme I chose was an AI generated home-made mug resembling the volcanos or era of pompeii. I had to describe pompeii and put it in a mug :) -->
+	    <audio id="audio" src="tracker.mp3"></audio> <!-- Tracker! the video source is on youtube. The link is at the top of this page! -->
+    </div>
+    <!-- this section inherits the javascript functionality for the buttons and other aspects or elements of the webpage. -->
+    <script src="script.js"></script>
+</body>
+</html>
+

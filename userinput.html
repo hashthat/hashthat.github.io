@@ -1,0 +1,209 @@
+<!--
+Samuel Alberts with UAT
+
+This is a project that uses inline CSS And JavaScript.
+
+The background photo was one of four that I generated through microsofts image creator. the Sentance was this:
+
+"a creative palindrome with dreams in the stars who finds its way with a secret question "Rolling Stone". The person knows the destination through submitting their first and last name with their zip code because the secret question is a secret image that appears in a portal"
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Message</title>
+    <!-- Add any necessary CSS for styling -->
+    <style>
+        /* Focusing on the body of the website, or stylizing the main visible section of the website. */
+        .container {
+            text-align: center;
+            background-color: transparent;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            background-color: white;
+        }
+
+        nav * {
+            display: inline;
+        }
+
+
+        /* The input fields are going to stay the same as to give a more balanced and professional feel to the website. The main things are the input text, padding, the font size, margins boarders and etc. This will represent the boxes where the user actually types their first and last name into the box along with their zip code. Utilizing this section or utilizing a section of input allows JavaScript to read the input and the function allows the input to be concatinated which is going to be the end goal of the assignment, concatenating two strings and being sure the two strings do not exceed 20 characters in the process of being read. */
+        
+        
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        
+         /* buttons and input space are kind of the same because of the feel of the website and the balance which includes the size and positioning of the buttons and spaces for the user to read or input information. */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        /* I have yet to find a more clever secret message! */
+        #secretMessage {
+            margin-top: 20px;
+            font-weight: bold;
+            padding: 20px;
+            border: 2px solid #000; /* Black! */
+            border-radius: 10px;
+            background-color: #f9f9f9; /* lighter background for readability */
+            display: inline-block;
+        }
+        
+        /* The background was one of four images created with the sentance (https://create.microsoft.com/en-us/features/ai-image-generator): 
+
+"a creative palindrome with dreams in the stars who finds its way with a secret question "Rolling Stone". The person knows the destination through submitting their first and last name with their zip code because the secret question is a secret image that appears in a portal"
+        
+the body targets before the body element given the background image is displayed. It's fixed so the background does not scroll with the page. The top and LEft edges align with the web browsing display page where the image covers all of the background space 100% with the width and height. The image obviously does not repeat and the position is Centered. Sometimes there is a better position other than a centered image given the size. But the Opacity is part of the Transparency given the thought of the user and how visual the image might be on the website. */ 
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://raw.githubusercontent.com/hashthat/UAT_CS-AI/main/Materials/screenshots/Designer(16).jpeg'); /* My AI-Generated Image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <nav>
+            <h2>
+                <ul>
+                    <li><a href='./index.html'>Home</a></li>
+                    <li><a href='./boards.html'>Boards</a></li>
+                    <li><a href='./palindrome.html'>Palindrome</a></li>
+                    <li><a href='./userinput.html'>User Input</a></li>
+                    <li><a href='./eventdriven.html'>Event-Driven Page</a></li>
+                </ul>
+            </h2>
+        </nav>
+    </div>
+
+
+    <div class="container">
+        
+          
+        <!-- This is the box the person sees in the center of the website! The results will be printed as part of the function. Keeping things simple for a basic white background so things can be legible! The button is there for the user to click and interact with the website. But also to check and see if their sentance is a Palindrome. -->
+        <form id="userForm">
+            <!-- Input for first name 
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required>
+            
+           
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required>
+
+            
+            <label for="zipCode">Zip Code:</label>
+            <input type="text" id="zipCode" required pattern="\d{5}" title="Five digit zip code">
+
+            
+            <button type="submit">Submit</button> -->
+            
+        <!-- the placeholder is added for the appearance and clearity of each input section of the website. I found the place holder to be way better than just using labels and then the input. -->
+        
+        <input type="text" id="firstName" placeholder="First Name">
+        <input type="text" id="lastName" placeholder="Last Name">
+        <!-- The input Type is important as to what the user will be giving input as a means to communication -->
+        <!-- Input field for the users zip code. I imagine there are many uses for a zip code given statistical data and demographics -->
+        <input type="number" id="zipCode" placeholder="Zip Code">
+        <button class="prompt-button" onclick="checkPalindrome()">Submit!</button>
+        <div class="results" id="results"></div>
+            
+        </form>
+
+        <!-- Display THE secret message -->
+        <div id="secretMessage"></div>
+    </div>
+
+    <script>
+         // This function will go through the hoops to see if this is a palindrome. The inline aspect of using JavaScript in HTML is effectively adding functions to the script section of the webpage!
+        
+            // Loop to continue asking until the user says to stop. This way there can be multiple inputs!
+            // this is the loop that creates the process of checking the palindrome. What is actually happening is the user is typing in a "string" of characters "while" the input is being looped for multiple inputs. The User can type in as many strings as they like. What happens when a string is typed?! the input is typed and the user hits the button to move into a sequence or process of loops.
+        // Function to combine or concatonate first name and last name togeather but also in the midst of returning a full name limiting their name by 20 characters.
+        function combineNames() {
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var fullName = firstName + " " + lastName;
+            return fullName;
+        }
+
+        // Function to check if zip code is valid
+        function validateZipCode() {
+            var zipCode = document.getElementById("zipCode").value;
+            return /^\d{5}$/.test(zipCode);
+            // The symbols for the zip code start with the first digit, to d{5} being 5 digits '^' being the start of the entry, '$' being the end.
+        }
+
+        // Function to check if a string is a palindrome
+        function isPalindrome(str) {
+            var sanitizedStr = str.replace(/\s+/g, '').toLowerCase(); // Remove spaces and convert to lowercase
+            var reversedStr = sanitizedStr.split('').reverse().join(''); // Reverse the string
+            return sanitizedStr === reversedStr; // Check if the string is the same forwards and backwards
+        }
+
+        // Function to display secret message
+        function secretMessage() {
+            var fullName = combineNames();
+            var validZip = validateZipCode();
+
+            // Check if full name exceeds 20 characters
+            // The length of the digits (d) would be 5 and the dollar sign states that this would be the end of the entry. There must be 5 digits, from !/^\ start to end!
+            if (fullName.length > 20) {
+                alert("Full name should not exceed 20 characters.");
+                return;
+            }
+
+            // Check if zip code is valid
+            if (!validZip) {
+                alert("Please enter a valid 5-digit zip code.");
+                return;
+            }
+
+            // Check if the full name is a palindrome
+            var palindromeMessage = isPalindrome(fullName) ? "Your name is a palindrome!" : "Your name is not a palindrome.";
+
+            // If inputs are valid, display secret message
+            document.getElementById("secretMessage").innerHTML = "Secret message: Be Fascinated by the Most Curious Things! " + palindromeMessage;
+        }
+
+        // Event listener for form submission
+        // Clear previous results, that way new users can be created. In this case the memory is not stored. That would be for another day.
+
+            // Validate full name and make sure the concatonation is 20 characters or less.
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            secretMessage(); // Call function to display secret message
+        });
+    </script>
+</body>
+</html>

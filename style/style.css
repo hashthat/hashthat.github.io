@@ -1,0 +1,101 @@
+/* Set size of html and body to full page size */
+html, body {
+	height: 100%;
+	background-image: url('https://raw.githubusercontent.com/hashthat/UAT_CS-AI/main/Materials/screenshots/Designer(1).jpeg'); /* image URL */
+    background-size: cover;
+	background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #008B8B; /* Fallback color */
+    color: #555; /* Text color */
+}
+
+/* Wrapper for header, main, and footer */
+.all-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+/* Align header to center of page */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Align navigation to center of page */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    background-color: white;
+}
+
+/* Display navigation links horizontal */
+nav * {
+    display: inline;
+    padding-left: 0;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: white;
+    padding: 1vw;
+    text-align: center;
+}
+
+.output {
+    color: white;
+    font-size: 24px;
+}
+
+.output h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.output .main-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    height: auto;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    border-collapse: collapse;
+    background-color: lightblue;
+}
+
+th {
+    height: 30px;
+    border-color: black;
+    border-style: solid;
+    color: black;
+    font-size: 24px;
+}
+
+td {
+    border-style: solid;
+    border-color: black;
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+}
+

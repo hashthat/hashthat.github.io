@@ -1,0 +1,148 @@
+<!--
+Samuel Alberts with UAT
+
+This is a project that uses inline CSS And JavaScript.
+here is a link for some inline javascript! https://www.geeksforgeeks.org/how-does-inline-javascript-work-with-html/
+
+I used some of my AI-Generated images for the background
+
+The fun part about writing notes in an inline HTML file is seeing the chnage in how the file is read from HTML, to CSS in the Style bracket to JavaScript in the Script bracket. anyone following will see me say this again as I write out the comments.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <!-- Import Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Apply basic styling to the body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+	    flex-wrap: wrap;
+        }
+
+	nav {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    width: 100vw;
+	    background-color: white;
+	}
+
+	nav * {
+	    display: inline;
+	}
+        /* Stylish main container */
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Stylish prompt button */
+        .prompt-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #17A2B8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        /* Change button color on hover */
+        .prompt-button:hover {
+            background-color: #0056b3;
+        }
+        /* PALINDROME CHECKER! */
+        .results {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        /* This is the Background Image. And the comments are like that of CSS! I wanted this to be transparent to a degree, but I didn't want it to be too overwhelming. I wish I had written down the sentance I used for the image. But the focus at the time was creating images that were focused on the idea of a Neural Network and what a Neural Network can Create. The Body simply positions the image, gives content, and I placed the width and height to 100% to fill the screen given the background image is the result of what is seen for the user. The position is Centered with nothing to repeat as the single image makes the scene! */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://raw.githubusercontent.com/hashthat/UAT_CS-AI/main/Materials/screenshots/Designer(12).jpeg'); /* My AI-Generated Image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.7;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+	<nav>
+	    <h2>
+                <ul>
+                    <li><a href='./index.html'>Home</a></li>
+                    <li><a href='./boards.html'>Boards</a></li>
+                    <li><a href='./palindrome.html'>Palindrome</a></li>
+                    <li><a href='./userinput.html'>User Input</a></li>
+		    <li><a href='./eventdriven.html'>Event-Driven Page</a></li>
+		</ul>
+            </h2>
+	</nav>
+    </div>
+
+    <!-- This is the box the person sees in the center of the website! The results will be printed as part of the function. Keeping things simple for a basic white background so things can be legible! The button is there for the user to click and interact with the website. But also to check and see if their sentance is a Palindrome. -->
+    <div class="container">
+        <h1>Is this a Palindrome?!</h1>
+        <button class="prompt-button" onclick="checkPalindrome()">Click to Enter!</button>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+	    // The fun part about note taking with inline javascript is the comments are in the syntax of what someone would use as they scripted in JavaScript!
+
+        // This function will go through the hoops to see if this is a palindrome. The inline aspect of using JavaScript in HTML is effectively adding functions to the script section of the webpage!
+        function checkPalindrome() {
+            // Loop to continue asking until the user says to stop. This way there can be multiple inputs!
+            // this is the loop that creates the process of checking the palindrome. What is actually happening is the user is typing in a "string" of characters "while" the input is being looped for multiple inputs. The User can type in as many strings as they like. What happens when a string is typed?! the input is typed and the user hits the button to move into a sequence or process of loops.
+            while (true) {
+                // This is the initial prompt for the user. This way they know what to do!
+                let userInput = prompt("Enter a string (or click Cancel to stop):");
+                if (userInput === null) break;
+                
+                // The process can start with either the toLowerCase or toUpperCase function.
+                let cleanedInput = userInput.replace(/\s+/g, '').toLowerCase();
+                // the reversed input checks to see if the input is a palindrome. Technically that is just checking if the array matches from the center out. So, this is where the string turns into an array
+                let reversedInput = cleanedInput.split('').reverse().join('');
+                
+                // is this a Palindrome?!
+                let isPalindrome = cleanedInput === reversedInput;
+                // Notify the user if the string is a palindrome or not
+                let message = `"${userInput}" is ${isPalindrome ? '' : 'not '}a palindrome.`;
+                
+                // Results
+                let resultsDiv = document.getElementById('results');
+                let resultParagraph = document.createElement('p');
+                resultParagraph.textContent = message;
+                resultsDiv.appendChild(resultParagraph);
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- This is a Review of the looping process of what creates a palindrome checker!
+	========================================================================
+	There are a few key functions to develop a palindrome checker. Before checking for the palendrome in a word or string of characters (the input of the user) There has to be a way to identify whether or not the characters match and the word is spelled the same forwards and backwards before it is split into an array and checked. So, there's the old C like function that changes a string to all upper or lowercase characters. That's where the madness can start. Making all the characters toupper or tolower case and then checking the values to the array or string. The first being the idea of a butterfly effect. That is with the use of a split() function which splits the string entered or the input string gets transferred into an array of characters that can be used with the reverse() function to see if the palendrom is read forwards or backwards. The other function does the reverse of what was done with the split() function. The join() function reconnects the array of characters and the input is converted back to a string of characters which is then returned as the output of the process.
+-->
