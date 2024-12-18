@@ -1,264 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Business Card</title>
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-  <script src="main.js"></script>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-    .btn {
-      background-color: rgba(179, 179, 179, 0.5);
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      border: 4px solid white;
-      display: inline-block;
-      margin: 5px;
-      z-index: 1;
-    }
-    .btn img {
-      width: 50px;
-      margin: 10px;
-    }
-    .button-container {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    @media (max-width: 600px) {
-      .btn {
-        width: 50px;
-        height: 50px;
-      }
-      .btn img {
-        width: 40px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Audio element for the song -->
-  <audio id="backgroundMusic" autoplay loop>
-    <source src="https://github.com/hashthat/hashthat.github.io/blob/main/tracker.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    </head>
 
-  <!-- Buttons -->
-  <div class="button-container">
-    <a class="btn" href="tel:918-428-6328" id="phoneBtn">
-      <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_phone.png?v=1597742071231" alt="Phone Icon">
-    </a>
-    <a class="btn" href="https://github.com/hashthat" target="_blank" id="githubBtn">
-      <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_web.png?v=1597742071155" alt="GitHub Icon">
-    </a>
-    <a class="btn" href="https://www.linkedin.com/in/samuel-alberts/" target="_blank" id="linkedinBtn">
-      <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_social.png?v=1597742071215" alt="LinkedIn Icon">
-    </a>
-    <a class="btn" href="mailto:earthstar412@gmail.com" target="_blank" id="emailBtn">
-      <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_mail.png?v=1597742071197" alt="Mail Icon">
-    </a>
-  </div>
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene arjs>
+            <a-marker preset='custom' type='pattern' url='https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt'>
+                <a-box color="red"></a-box>
+            </a-marker>
 
-  <!-- AR Scene -->
-  <a-scene arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" embedded>
-    <!-- Marker-based AR using the custom image pattern -->
-    <a-marker type="pattern" url="https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt">
-    
-      <a-plane
-        height="4.8"
-        width="7"
-        material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);"
-        transparent="true"
-        rotation="-90"
-        position="0 0.3 0">
-      </a-plane>
+            <a-entity camera></a-entity>
+        </a-scene>
 
-    </a-marker>
-  </a-scene>
+        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+        <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 
-  <!-- Message to show URL when button is clicked -->
-  <a-text id="openText" value="Opening..." position="0 2 0" scale="3 3 3" visible="false"></a-text>
-
-  <!-- WebXR AR Session Button -->
-  <button id="startAR" style="position: absolute; top: 10px; left: 10px; padding: 10px 20px; z-index: 10;">Start AR Session</button>
-
-  <script>
-    // Button hover effect
-    document.querySelectorAll('.btn').forEach(button => {
-      button.addEventListener('mouseenter', function() {
-        this.style.transform = "scale(1.1)";
-        this.style.backgroundColor = "rgba(179, 179, 179, 0.8)";
-      });
-
-      button.addEventListener('mouseleave', function() {
-        this.style.transform = "scale(1)";
-        this.style.backgroundColor = "rgba(179, 179, 179, 0.5)";
-      });
-    });
-
-    // Show "Opening..." text and open URL when clicked
-    document.getElementById('phoneBtn').addEventListener('click', function() {
-      document.getElementById('openText').setAttribute('visible', 'true');
-      setTimeout(() => {
-        window.open('tel:918-428-6328');
-        document.getElementById('openText').setAttribute('visible', 'false');
-      }, 1000);
-    });
-
-    document.getElementById('githubBtn').addEventListener('click', function() {
-      document.getElementById('openText').setAttribute('visible', 'true');
-      setTimeout(() => {
-        window.open('https://github.com/hashthat');
-        document.getElementById('openText').setAttribute('visible', 'false');
-      }, 1000);
-    });
-
-    document.getElementById('linkedinBtn').addEventListener('click', function() {
-      document.getElementById('openText').setAttribute('visible', 'true');
-      setTimeout(() => {
-        window.open('https://www.linkedin.com/in/samuel-alberts/');
-        document.getElementById('openText').setAttribute('visible', 'false');
-      }, 1000);
-    });
-
-    document.getElementById('emailBtn').addEventListener('click', function() {
-      document.getElementById('openText').setAttribute('visible', 'true');
-      setTimeout(() => {
-        window.open('mailto:earthstar412@gmail.com');
-        document.getElementById('openText').setAttribute('visible', 'false');
-      }, 1000);
-    });
-
-    // WebXR AR Session initialization (from main.js)
-    (async function () {
-        if (navigator.xr && navigator.xr.isSessionSupported) {
-            const isARSupported = await navigator.xr.isSessionSupported('immersive-ar');
-            if (!isARSupported) {
-                console.error("AR is not supported on this device.");
+        <!-- Developing the AR buttons -->
+        <style>
+            .btn {
+                background-color: rgb(179, 179, 179,0.5);
+                width: 70px;
+                height: 70px;
+                border-radius: 60px;
+                border: 4px solid white;
+                display:inline-block;
+                margin:5px;
+                z-index:1;
             }
-        } else {
-            console.error("WebXR is not available in this browser.");
-        }
-    })();
-
-    // Class to manage the XR scene
-    class XRScene {
-        constructor() {
-            this.canvas = null;
-            this.gl = null;
-            this.scene = null;
-            this.camera = null;
-            this.renderer = null;
-            this.session = null;
-            this.refSpace = null;
-        }
-
-        // Create a WebGL canvas and append it to the document
-        XRCanvas() {
-            this.canvas = document.createElement('canvas');
-            this.canvas.style.position = 'absolute';
-            this.canvas.style.left = '0';
-            this.canvas.style.top = '0';
-            this.canvas.style.width = '100%';
-            this.canvas.style.height = '100%';
-            this.canvas.style.zIndex = '-1';
-            document.body.appendChild(this.canvas);
-
-            this.gl = this.canvas.getContext('webgl', { xrCompatible: true });
-        }
-
-        // Start an AR session
-        async AXRSession() {
-            try {
-                const session = await navigator.xr.requestSession('immersive-ar', {
-                    requiredFeatures: ['local', 'dom-overlay'],
-                    domOverlay: { root: document.getElementById('overlay') }
-                });
-                this.onSessionStarted(session);
-            } catch (error) {
-                console.error("Failed to start AR session:", error);
+            
+            .button-container {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
             }
-        }
+        </style>
 
-        // Handle session start
-        async onSessionStarted(session) {
-            this.session = session;
-            session.addEventListener('end', this.onSessionEnded.bind(this));
+        <body style="margin : 0px; overflow: hidden;">
+            <div class="button-container">
+                <!-- Phone -->
+                <a class="btn" href="tel:918-428-6328">
+                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_phone.png?v=1597742071231" style="width:50px;margin:10px;" />
+                </a>
+                <!-- GitHub/Website -->
+                <a class="btn" href="https://github.com/hashthat" target="_blank">
+                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_web.png?v=1597742071155" style="width:50px;margin:10px;" />
+                </a>
+                <!-- LinkedIn/Social Media -->
+                <a class="btn" href="https://www.linkedin.com/in/samuel-alberts/" target="_blank">
+                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_social.png?v=1597742071215" style="width:50px;margin:10px;" />
+                </a>
 
-            this.XRCanvas();
+                <!-- Email -->
+                <a class="btn" href="mailto:earthstar412@gmail.com" target="_blank">
+                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_mail.png?v=1597742071197" style="width:50px;margin:10px;" />
+                </a>
+            </div>
 
-            this.session.baseLayer = new XRWebGLLayer(this.session, this.gl);
-
-            // Create the scene and camera
-            this.scene = new THREE.Scene();
-            this.camera = new THREE.PerspectiveCamera(
-                70, // Field of view
-                window.innerWidth / window.innerHeight, // Aspect ratio
-                0.1, // Near clipping plane
-                1000 // Far clipping plane
-            );
-
-            this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, context: this.gl });
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.renderer.setAnimationLoop(this.onXRFrame.bind(this));
-
-            try {
-                this.refSpace = await this.session.requestReferenceSpace('local');
-                this.session.requestAnimationFrame(this.onXRFrame.bind(this));
-            } catch (error) {
-                console.error("Failed to set up reference space:", error);
-            }
-        }
-
-        // Handle rendering in each animation frame
-        onXRFrame(time, frame) {
-            const session = this.session;
-            const pose = frame.getViewerPose(this.refSpace);
-
-            if (pose) {
-                this.renderer.clear();
-
-                // Update camera based on pose
-                const view = pose.views[0];
-                const viewport = session.baseLayer.getViewport(view);
-                this.renderer.setViewport(viewport.x, viewport.y, viewport.width, viewport.height);
-
-                this.camera.matrix.fromArray(view.transform.matrix);
-                this.camera.projectionMatrix.fromArray(view.projectionMatrix);
-                this.camera.updateMatrixWorld(true);
-
-                // Render the scene
-                this.renderer.render(this.scene, this.camera);
-            }
-
-            session.requestAnimationFrame(this.onXRFrame.bind(this));
-        }
-
-        // Handle session end
-        onSessionEnded() {
-            console.log("AR session ended.");
-            this.session.removeEventListener('end', this.onSessionEnded);
-            this.session = null;
-            this.refSpace = null;
-            this.gl = null;
-        }
-    }
-
-    // Initialize and start the AR scene
-    const xrScene = new XRScene();
-    document.getElementById('startAR').addEventListener('click', () => xrScene.AXRSession());
-  </script>
-</body>
+            <a-scene arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" embedded cursor="rayOrigin: mouse" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector>
+                <a-marker-camera type="pattern" preset="custom" url="https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt">
+                    <a-plane height="4.8" width="7" material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);" transparent="true" rotation="-90" position="-1.5 0 0.3">
+                    </a-plane>
+                </a-marker-camera>    
+            </a-scene>
+        </body>
 </html>
