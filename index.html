@@ -123,10 +123,20 @@
             </a-marker-camera>    
         </a-scene>
         <script>
-    // Function to close the video overlay
-    function closeVideo() {
-        // Hide the video overlay
-        document.getElementById('videoOverlay').style.display = 'none';
+    // Function to close the video overlay and stop the video
+function closeVideo() {
+    // Hide the video overlay
+    document.getElementById('videoOverlay').style.display = 'none';
+
+    // Stop the YouTube video by setting the iframe src to null
+    const iframe = document.querySelector('iframe');
+    const iframeSrc = iframe.src;
+    iframe.src = '';  // Remove the video source to stop playback
+
+    // Restore the original iframe src (optional, if you want to reload the video later)
+    iframe.src = iframeSrc;
+}
+
         
         // Stop the audio
         const audioSample = document.getElementById('audioSample');
