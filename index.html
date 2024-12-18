@@ -61,13 +61,6 @@
             cursor: pointer;
             border-radius: 5px;
         }
-
-        /* Set the AR scene background to transparent with the image */
-        a-scene {
-            background: url('https://github.com/hashthat/hashthat.github.io/blob/main/dreadz.png') no-repeat center center fixed;
-            background-size: cover;
-        }
-
     </style>
 
     <!-- Video Overlay -->
@@ -117,6 +110,7 @@
     </a-scene>
 
     <script>
+        // Trigger video overlay when the page loads
         window.onload = function () {
             const videoOverlay = document.getElementById('videoOverlay');
             const startButton = document.createElement('button');
@@ -139,7 +133,7 @@
             const iframe = videoOverlay.querySelector('iframe');
             iframe.src = iframe.src;
 
-            // Stop the audio
+            // Stop the audio playback
             const audioSample = document.getElementById('audioSample');
             audioSample.pause();
             audioSample.currentTime = 0;
@@ -147,3 +141,4 @@
     </script>
 </body>
 </html>
+
