@@ -67,16 +67,17 @@
 
   <!-- AR Scene -->
   <a-scene arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" embedded>
-    <a-marker type="pattern" preset="custom" url="qrMarker.patt">
-      <a-plane
-        height="4.8"
-        width="7"
-        material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);"
-        transparent="true"
-        rotation="-90"
-        position="0 0.3 0">
-      </a-plane>
-    </a-marker>
+    <a-marker type="pattern" preset="custom" url="dreadz.patt">
+  <a-plane
+    height="4.8"
+    width="7"
+    material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);"
+    transparent="true"
+    rotation="-90"
+    position="0 0.3 0">
+  </a-plane>
+</a-marker>
+
     <a-marker-camera preset="custom" type="pattern" url="qrMarker.patt"></a-marker-camera>
   </a-scene>
 </body>
