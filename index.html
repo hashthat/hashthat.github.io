@@ -1,171 +1,136 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    
-    </head>
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
 
-    <body style="margin : 0px; overflow: hidden;">
-        <!--div id="overlay"></div -->
-        <!--a-scene arjs>
-            <a-plane 
-                position="0 0 -5" 
-                width="10" 
-                height="10" 
-                material="src: url('https://raw.githubusercontent.com/hashthat/hashthat.github.io/main/dreadz.png
-'); opacity: 0.5; transparent: true;">
-            </a-plane-->
-            <a-marker preset='custom' type='pattern' url='https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt'>
-                <!-- a-image src="https://github.com/hashthat/hashthat.github.io/blob/main/dreadz.png" position="0 0.5 0" width="2" height="2"></a-image-->
-                <a-box color="red"></a-box>
-            </a-marker>
-
-            <a-entity camera></a-entity>
-        </a-scene>
-
-        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-        <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-        <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-        <!-- Developing the AR buttons -->
-        <style>
-            .btn {
-                background-color: rgb(179, 179, 179,0.5);
-                width: 70px;
-                height: 70px;
-                border-radius: 60px;
-                border: 4px solid white;
-                display:inline-block;
-                margin:5px;
-                z-index:1;
-            }
-            
-            .button-container {
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-            }
-
-            .video-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 10;
-            }
-
-            .video-overlay iframe {
-                width: 80%;
-                height: 45%;
-                border: none;
-                border-radius: 10px;
-            }
-
-            .video-overlay button {
-                position: absolute;
-                bottom: 20px;
-                background-color: #f04d4d;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                font-size: 18px;
-                cursor: pointer;
-                border-radius: 5px;
-        </style>
-        <div class="video-overlay" id="videoOverlay">
-    <div id="videoPlayer"></div>
-    <button onclick="closeVideo()">Close</button>
-</div>
-        <!-- Video Overlay>
-        <div class="video-overlay" id="videoOverlay">
-            <iframe 
-                src="https://www.youtube.com/embed/u0hVXoR4ibg?autoplay=1&controls=1&modestbranding=1&rel=0"
-                allow="autoplay; encrypted-media" 
-                allowfullscreen>
-            </iframe>
-            <button onclick="closeVideo()">Close</button>
-    </div-->
-
-        <body style="margin : 0px; overflow: hidden;">
-            <div class="button-container">
-                <!-- Phone -->
-                <a class="btn" href="tel:918-428-6328">
-                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_phone.png?v=1597742071231" style="width:50px;margin:10px;" />
-                </a>
-                <!-- MusicStreaming -->
-                <a class="btn" href="https://on.soundcloud.com/cLvxf83hXzvAedmT8" target="_blank">
-                <i class="fas fa-headphones" style="font-size: 30px;"></i>
-            </a>
-            <audio id="audioSample" src="https://github.com/hashthat/hashthat.github.io/edit/main/tracker.mp3" preload="auto"></audio>
-
-                <!-- GitHub/Website -->
-                <a class="btn" href="https://github.com/hashthat" target="_blank">
-                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_web.png?v=1597742071155" style="width:50px;margin:10px;" />
-                </a>
-                <!-- LinkedIn/Social Media -->
-                <a class="btn" href="https://www.linkedin.com/in/samuel-alberts/" target="_blank">
-                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_social.png?v=1597742071215" style="width:50px;margin:10px;" />
-                </a>
-
-                <!-- Email -->
-                <a class="btn" href="mailto:earthstar412@gmail.com" target="_blank">
-                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_mail.png?v=1597742071197" style="width:50px;margin:10px;" />
-                </a>
-            </div>
-
-            <a-scene arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" embedded cursor="rayOrigin: mouse" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector>
-                <a-marker-camera type="pattern" preset="custom" url="https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt">
-                     <!-- a-image src="https://github.com/hashthat/hashthat.github.io/blob/main/dreadz.png" position="0 0.5 0" width="2" height="2"></a-image-->
-                    <a-plane height="4.8" width="7" material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);" transparent="true" rotation="-90" position="-1.5 0 0.3">
-                    </a-plane>
-                </a-marker-camera>    
-            </a-scene>
-            <script>
-                // Show the video overlay on page load
-            // window.onload = function () {
-                // const videoOverlay = document.getElementById('videoOverlay');
-               // videoOverlay.style.display = 'flex';
-            // };
-                // Function called by the YouTube IFrame API
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('videoPlayer', {
-            videoId: 'u0hVXoR4ibg', // The YouTube video ID
-            playerVars: {
-                autoplay: 1, // Autoplay the video
-                controls: 1, // Show controls
-                modestbranding: 1,
-                rel: 0
-            }
-        });
-    }
-            // Function to close the video overlay
-    // Function to close the video overlay and pause the video
-    function closeVideo() {
-        document.getElementById('videoOverlay').style.display = 'none';
-        if (player) {
-            player.pauseVideo(); // Pause the video
+<body style="margin: 0px; overflow: hidden;">
+    <style>
+        .btn {
+            background-color: rgba(179, 179, 179, 0.5);
+            width: 70px;
+            height: 70px;
+            border-radius: 60px;
+            border: 4px solid white;
+            display: inline-block;
+            margin: 5px;
+            z-index: 1;
         }
-    }
-        
-        // Stop the audio
-        const audioSample = document.getElementById('audioSample');
-        audioSample.pause(); // Pause the audio
-        audioSample.currentTime = 0; // Reset the playback to the start
-    }
-        </script>
-        </body>
+
+        .button-container {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .video-overlay iframe {
+            width: 80%;
+            height: 45%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .video-overlay button {
+            position: absolute;
+            bottom: 20px;
+            background-color: #f04d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+
+    <!-- Video Overlay -->
+    <div class="video-overlay" id="videoOverlay">
+        <iframe
+            src="https://www.youtube.com/embed/u0hVXoR4ibg?autoplay=1&controls=1&modestbranding=1&rel=0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+        <button onclick="closeVideo()">Close</button>
+    </div>
+
+    <div class="button-container">
+        <!-- Phone -->
+        <a class="btn" href="tel:918-428-6328">
+            <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_phone.png?v=1597742071231" style="width:50px;margin:10px;" />
+        </a>
+
+        <!-- Music Streaming -->
+        <a class="btn" href="https://on.soundcloud.com/cLvxf83hXzvAedmT8" target="_blank">
+            <i class="fas fa-headphones" style="font-size: 30px;"></i>
+        </a>
+
+        <audio id="audioSample" src="https://github.com/hashthat/hashthat.github.io/edit/main/tracker.mp3" preload="auto"></audio>
+
+        <!-- GitHub -->
+        <a class="btn" href="https://github.com/hashthat" target="_blank">
+            <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_web.png?v=1597742071155" style="width:50px;margin:10px;" />
+        </a>
+
+        <!-- LinkedIn -->
+        <a class="btn" href="https://www.linkedin.com/in/samuel-alberts/" target="_blank">
+            <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_social.png?v=1597742071215" style="width:50px;margin:10px;" />
+        </a>
+
+        <!-- Email -->
+        <a class="btn" href="mailto:earthstar412@gmail.com" target="_blank">
+            <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_mail.png?v=1597742071197" style="width:50px;margin:10px;" />
+        </a>
+    </div>
+
+    <a-scene arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" embedded cursor="rayOrigin: mouse" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector>
+        <a-marker-camera type="pattern" preset="custom" url="https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt">
+            <a-plane height="4.8" width="7" material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);" transparent="true" rotation="-90" position="-1.5 0 0.3">
+            </a-plane>
+        </a-marker-camera>
+    </a-scene>
+
+    <script>
+        // Show the video overlay on page load
+        window.onload = function () {
+            const videoOverlay = document.getElementById('videoOverlay');
+            videoOverlay.style.display = 'flex';
+        };
+
+        // Function to close the video overlay
+        function closeVideo() {
+            // Hide the video overlay
+            const videoOverlay = document.getElementById('videoOverlay');
+            videoOverlay.style.display = 'none';
+
+            // Stop the YouTube video by resetting the iframe source
+            const iframe = videoOverlay.querySelector('iframe');
+            iframe.src = iframe.src;
+
+            // Stop the audio
+            const audioSample = document.getElementById('audioSample');
+            audioSample.pause(); // Pause the audio
+            audioSample.currentTime = 0; // Reset the playback to the start
+        }
+    </script>
+</body>
 </html>
