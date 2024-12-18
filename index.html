@@ -8,6 +8,12 @@
     <body style="margin : 0px; overflow: hidden;">
         <!--div id="overlay"></div -->
         <a-scene arjs>
+            <a-plane 
+                position="0 0 -1" 
+                width="10" 
+                height="10" 
+                material="src: url('https://github.com/hashthat/hashthat.github.io/blob/main/dreadz.png?raw=true'); opacity: 0.5; transparent: true;">
+            </a-plane>
             <a-marker preset='custom' type='pattern' url='https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt'>
                 <!-- a-image src="https://github.com/hashthat/hashthat.github.io/blob/main/dreadz.png" position="0 0.5 0" width="2" height="2"></a-image-->
                 <a-box color="red"></a-box>
