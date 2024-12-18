@@ -120,21 +120,29 @@
 
         <script>
             // Function to show video overlay when the page is loaded
-            window.onload = function() {
-                document.getElementById('videoOverlay').style.display = 'flex';
-            };
+window.onload = function() {
+    document.getElementById('videoOverlay').style.display = 'flex';
+    startVideo(); // Start the video when the page loads
+};
 
-            // Function to close the video overlay and stop the video
-            function closeVideo() {
-                // Hide the video overlay
-                document.getElementById('videoOverlay').style.display = 'none';
+// Function to start the video by resetting the iframe src
+function startVideo() {
+    const iframe = document.getElementById('videoIframe');
+    const iframeSrc = iframe.src;
+    iframe.src = '';  // Remove the video source to stop playback
+    iframe.src = iframeSrc;  // Reload the video
+}
 
-                // Stop the YouTube video by resetting the iframe src to the same value (to reload it)
-                const iframe = document.getElementById('videoIframe');
-                const iframeSrc = iframe.src;
-                iframe.src = '';  // Remove the video source to stop playback
-                iframe.src = iframeSrc;  // Reload the video
-            }
+// Function to close the video overlay and stop the video
+function closeVideo() {
+    // Hide the video overlay
+    document.getElementById('videoOverlay').style.display = 'none';
+
+    // Stop the YouTube video by resetting the iframe src to an empty string
+    const iframe = document.getElementById('videoIframe');
+    iframe.src = '';  // Stop the video
+}
+
         </script>
     </body>
 </html>
