@@ -3,13 +3,32 @@
     <head>
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     </head>
 
-    <body style="margin: 0px; overflow: hidden;">
+    <body style="margin : 0px; overflow: hidden;">
+        <!-- Overlay div added here -->
+        <div id="overlay"></div>
+
+        <a-scene arjs>
+            <a-marker preset='custom' type='pattern' url='https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt'>
+                <!-- The image will appear in AR -->
+                <a-image src="https://your-image-url-here.com/image.jpg" position="0 0.5 0" width="2" height="2"></a-image>
+
+                <a-box color="red" position="0 0 0.5"></a-box>
+            </a-marker>
+
+            <a-entity camera></a-entity>
+        </a-scene>
+
+        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+        <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+
+        <!-- Developing the AR buttons -->
         <style>
             .btn {
-                background-color: rgba(179, 179, 179, 0.5);
+                background-color: rgb(179, 179, 179, 0.5);
                 width: 70px;
                 height: 70px;
                 border-radius: 60px;
@@ -18,7 +37,7 @@
                 margin: 5px;
                 z-index: 1;
             }
-
+            
             .button-container {
                 height: 100%;
                 width: 100%;
@@ -29,49 +48,7 @@
                 justify-content: center;
                 align-items: flex-end;
             }
-
-            .video-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 10;
-            }
-
-            .video-overlay iframe {
-                width: 80%;
-                height: 45%;
-                border: none;
-                border-radius: 10px;
-            }
-
-            .video-overlay button {
-                position: absolute;
-                bottom: 20px;
-                background-color: #f04d4d;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                font-size: 18px;
-                cursor: pointer;
-                border-radius: 5px;
-            }
         </style>
-
-        <!-- Video Overlay -->
-        <div class="video-overlay" id="videoOverlay">
-            <iframe 
-                src="https://www.youtube.com/embed/u0hVXoR4ibg?autoplay=1&controls=1&modestbranding=1&rel=0"
-                allow="autoplay; encrypted-media" 
-                allowfullscreen>
-            </iframe>
-            <button onclick="closeVideo()">Close</button>
-        </div>
 
         <div class="button-container">
             <!-- Phone -->
@@ -93,25 +70,11 @@
             </a>
         </div>
 
-
         <a-scene arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" embedded cursor="rayOrigin: mouse" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector>
             <a-marker-camera type="pattern" preset="custom" url="https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt">
-                <a-plane height="4.8" width="7" material="shader: gif; src: url(https://giffiles.alphacoders.com/407/4070.gif);" transparent="true" rotation="-90" position="-1.5 0 0.3">
-                </a-plane>
+                <!-- The image will appear in AR -->
+                <a-image src="https://your-image-url-here.com/image.jpg" position="0 0.5 0" width="2" height="2"></a-image>
             </a-marker-camera>    
         </a-scene>
-
-        <script>
-            // Show the video overlay on page load
-            window.onload = function () {
-                const videoOverlay = document.getElementById('videoOverlay');
-                videoOverlay.style.display = 'flex';
-            };
-
-            // Function to close the video overlay
-            function closeVideo() {
-                document.getElementById('videoOverlay').style.display = 'none';
-            }
-        </script>
     </body>
-</html> 
+</html>
