@@ -86,8 +86,11 @@
                 cursor: pointer;
                 border-radius: 5px;
         </style>
-
-        <!-- Video Overlay -->
+        <div class="video-overlay" id="videoOverlay">
+    <div id="videoPlayer"></div>
+    <button onclick="closeVideo()">Close</button>
+</div>
+        <!-- Video Overlay>
         <div class="video-overlay" id="videoOverlay">
             <iframe 
                 src="https://www.youtube.com/embed/u0hVXoR4ibg?autoplay=1&controls=1&modestbranding=1&rel=0"
@@ -95,7 +98,7 @@
                 allowfullscreen>
             </iframe>
             <button onclick="closeVideo()">Close</button>
-        </div>
+    </div-->
 
         <body style="margin : 0px; overflow: hidden;">
             <div class="button-container">
@@ -133,14 +136,30 @@
             </a-scene>
             <script>
                 // Show the video overlay on page load
-            window.onload = function () {
-                const videoOverlay = document.getElementById('videoOverlay');
-                videoOverlay.style.display = 'flex';
-            };
+            // window.onload = function () {
+                // const videoOverlay = document.getElementById('videoOverlay');
+               // videoOverlay.style.display = 'flex';
+            // };
+                // Function called by the YouTube IFrame API
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('videoPlayer', {
+            videoId: 'u0hVXoR4ibg', // The YouTube video ID
+            playerVars: {
+                autoplay: 1, // Autoplay the video
+                controls: 1, // Show controls
+                modestbranding: 1,
+                rel: 0
+            }
+        });
+    }
             // Function to close the video overlay
+    // Function to close the video overlay and pause the video
     function closeVideo() {
-        // Hide the video overlay
         document.getElementById('videoOverlay').style.display = 'none';
+        if (player) {
+            player.pauseVideo(); // Pause the video
+        }
+    }
         
         // Stop the audio
         const audioSample = document.getElementById('audioSample');
