@@ -132,6 +132,11 @@
                 </a-marker-camera>    
             </a-scene>
             <script>
+                // Show the video overlay on page load
+            window.onload = function () {
+                const videoOverlay = document.getElementById('videoOverlay');
+                videoOverlay.style.display = 'flex';
+            };
             // Function to close the video overlay
             function closeVideo() {
                 document.getElementById('videoOverlay').style.display = 'none';
