@@ -8,7 +8,14 @@
     <body style="margin : 0px; overflow: hidden;">
         <!-- Overlay div added here -->
         <div id="overlay"></div>
-
+        <!-- Semi-transparent background image -->
+            <a-plane 
+                position="0 0 -1" 
+                width="10" 
+                height="10" 
+                material="src: url('https://raw.githubusercontent.com/hashthat/hashthat.github.io/main/dreadz.png
+'); opacity: 0.5; transparent: true;">
+            </a-plane>
         <a-scene arjs>
             <a-marker preset='custom' type='pattern' url='https://github.com/hashthat/hashthat.github.io/blob/main/gitPage.patt'>
                 <!-- The image will appear in AR -->
@@ -51,12 +58,17 @@
         </style>
 
         <div class="button-container">
+            <!-- Phone WhatsApp-->
             <!-- Phone -->
-            <a class="btn" href="tel:918-428-6328">
-                <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_phone.png?v=1597742071231" style="width:50px;margin:10px;" />
+                <a class="btn" href="tel:918-428-6328">
+                    <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_phone.png?v=1597742071231" style="width:50px;margin:10px;" />
+                </a>
+            <!-- MusicStreaming -->
+                <a class="btn" href="https://on.soundcloud.com/cLvxf83hXzvAedmT8" target="_blank">
+                <i class="fas fa-headphones" style="font-size: 30px;"></i>
             </a>
-            <!-- GitHub/Website -->
-            <a class="btn" href="https://github.com/hashthat" target="_blank">
+            <!-- Prototype of App in Axure -->
+            <a class="btn" href="https://qcgysh.axshare.com/?id=gs3s0q&p=userlogin" target="_blank">
                 <img src="https://cdn.glitch.com/ec1a8deb-f8ab-4b0c-b059-f454239c610f%2Ficon_web.png?v=1597742071155" style="width:50px;margin:10px;" />
             </a>
             <!-- LinkedIn/Social Media -->
@@ -76,5 +88,18 @@
                 <a-image src="https://your-image-url-here.com/image.jpg" position="0 0.5 0" width="2" height="2"></a-image>
             </a-marker-camera>    
         </a-scene>
+        <script>
+    // Function to close the video overlay
+    function closeVideo() {
+        // Hide the video overlay
+        document.getElementById('videoOverlay').style.display = 'none';
+        
+        // Stop the audio
+        const audioSample = document.getElementById('audioSample');
+        audioSample.pause(); // Pause the audio
+        audioSample.currentTime = 0; // Reset the playback to the start
+    }
+</script>
+
     </body>
 </html>
