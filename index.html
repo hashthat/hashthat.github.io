@@ -8,8 +8,8 @@
     <body style="margin: 0px; overflow: hidden;">
         <!-- Video overlay container -->
         <div id="videoOverlay" class="video-overlay" style="display:none;">
-            <iframe src="https://www.youtube.com/watch?v=u0hVXoR4ibg"
-        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe id="videoIframe" src="https://www.youtube.com/embed/u0hVXoR4ibg?autoplay=1"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
             <button onclick="closeVideo()">Close Video</button>
         </div>
@@ -76,7 +76,7 @@
                 margin: 5px;
                 z-index: 1;
             }
-            
+
             .button-container {
                 height: 100%;
                 width: 100%;
@@ -129,14 +129,13 @@
                 // Hide the video overlay
                 document.getElementById('videoOverlay').style.display = 'none';
 
-                // Stop the YouTube video by setting the iframe src to null
-                const iframe = document.querySelector('iframe');
+                // Stop the YouTube video by resetting the iframe src to the same value (to reload it)
+                const iframe = document.getElementById('videoIframe');
                 const iframeSrc = iframe.src;
                 iframe.src = '';  // Remove the video source to stop playback
-
-                // Restore the original iframe src (optional, if you want to reload the video later)
-                iframe.src = iframeSrc;
+                iframe.src = iframeSrc;  // Reload the video
             }
         </script>
     </body>
 </html>
+
