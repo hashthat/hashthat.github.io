@@ -108,20 +108,38 @@
       });
     });
 
-    // Function to handle button clicks and show "Opening..." text
-    function handleButtonClick(url) {
+    // Show "Opening..." text and open URL when clicked
+    document.getElementById('phoneBtn').addEventListener('click', function() {
       document.getElementById('openText').setAttribute('visible', 'true');
       setTimeout(() => {
-        window.open(url);
+        window.open('tel:918-428-6328');
         document.getElementById('openText').setAttribute('visible', 'false');
       }, 1000);
-    }
+    });
 
-    // Event listeners for buttons
-    document.getElementById('phoneBtn').addEventListener('click', () => handleButtonClick('tel:918-428-6328'));
-    document.getElementById('githubBtn').addEventListener('click', () => handleButtonClick('https://github.com/hashthat'));
-    document.getElementById('linkedinBtn').addEventListener('click', () => handleButtonClick('https://www.linkedin.com/in/samuel-alberts/'));
-    document.getElementById('emailBtn').addEventListener('click', () => handleButtonClick('mailto:earthstar412@gmail.com'));
+    document.getElementById('githubBtn').addEventListener('click', function() {
+      document.getElementById('openText').setAttribute('visible', 'true');
+      setTimeout(() => {
+        window.open('https://github.com/hashthat');
+        document.getElementById('openText').setAttribute('visible', 'false');
+      }, 1000);
+    });
+
+    document.getElementById('linkedinBtn').addEventListener('click', function() {
+      document.getElementById('openText').setAttribute('visible', 'true');
+      setTimeout(() => {
+        window.open('https://www.linkedin.com/in/samuel-alberts/');
+        document.getElementById('openText').setAttribute('visible', 'false');
+      }, 1000);
+    });
+
+    document.getElementById('emailBtn').addEventListener('click', function() {
+      document.getElementById('openText').setAttribute('visible', 'true');
+      setTimeout(() => {
+        window.open('mailto:earthstar412@gmail.com');
+        document.getElementById('openText').setAttribute('visible', 'false');
+      }, 1000);
+    });
 
     // WebXR AR Session initialization (from main.js)
     (async function () {
