@@ -138,9 +138,15 @@
                 videoOverlay.style.display = 'flex';
             };
             // Function to close the video overlay
-            function closeVideo() {
-                document.getElementById('videoOverlay').style.display = 'none';
-            }
+    function closeVideo() {
+        // Hide the video overlay
+        document.getElementById('videoOverlay').style.display = 'none';
+        
+        // Stop the audio
+        const audioSample = document.getElementById('audioSample');
+        audioSample.pause(); // Pause the audio
+        audioSample.currentTime = 0; // Reset the playback to the start
+    }
         </script>
         </body>
 </html>
