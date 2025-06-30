@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define base-level CSS variables and default styles */
+@layer base {
+  :root {
+    --background-color: 27, 27, 27;
+    --foreground-color: 225, 225, 225;
+    --muted-color: 200, 200, 200;
+    --accent-color: 100, 100, 250;
+    --font-inter: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-inter);
+    background-color: rgb(var(--background-color));
+    color: rgb(var(--foreground-color));
+  }
+
+  /* Optional: reset styles for headings, links, etc. */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+  }
+
+  a {
+    color: rgb(var(--accent-color));
+    text-decoration: underline;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
